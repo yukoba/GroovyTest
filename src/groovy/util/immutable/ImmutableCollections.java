@@ -33,31 +33,12 @@ public final class ImmutableCollections {
     }
 
     /**
-     * Creates an empty immutable stack.
-     *
-     * @return an empty immutable stack
-     */
-    static <E> ImmutableStack<E> stack() {
-        return ImmutableConsStack.empty();
-    }
-
-    /**
-     * Creates an immutable stack from an iterable.
-     *
-     * @param iterable creates from
-     * @return the immutable stack
-     */
-    static <E> ImmutableStack<E> stack(Iterable<? extends E> iterable) {
-        return ImmutableConsStack.from(iterable);
-    }
-
-    /**
      * Creates an empty immutable deque.
      *
      * @return an empty immutable deque
      */
     public static <E> ImmutableDeque<E> deque() {
-        return ImmutableAmortizedDeque.empty();
+        return ImmutableDequeImpl.empty();
     }
 
     /**
@@ -67,7 +48,7 @@ public final class ImmutableCollections {
      * @return the immutable deque
      */
     public static <E> ImmutableDeque<E> deque(Iterable<? extends E> iterable) {
-        return ImmutableAmortizedDeque.from(iterable);
+        return ImmutableDequeImpl.from(iterable);
     }
 
     /**
@@ -76,7 +57,7 @@ public final class ImmutableCollections {
      * @return an empty immutable list
      */
     public static <E> ImmutableList<E> list() {
-        return ImmutableTreeList.empty();
+        return ImmutableListImpl.empty();
     }
 
     /**
@@ -86,7 +67,7 @@ public final class ImmutableCollections {
      * @return the immutable list
      */
     public static <E> ImmutableList<E> list(Iterable<? extends E> iterable) {
-        return ImmutableTreeList.from(iterable);
+        return ImmutableListImpl.from(iterable);
     }
 
     /**
@@ -95,7 +76,7 @@ public final class ImmutableCollections {
      * @return an empty immutable set
      */
     public static <E> ImmutableSet<E> set() {
-        return ImmutableMapSet.empty();
+        return ImmutableSetImpl.empty();
     }
 
     /**
@@ -105,7 +86,7 @@ public final class ImmutableCollections {
      * @return the immutable set
      */
     public static <E> ImmutableSet<E> set(Iterable<? extends E> iterable) {
-        return ImmutableMapSet.from(iterable);
+        return ImmutableSetImpl.from(iterable);
     }
 
     /**
@@ -114,7 +95,7 @@ public final class ImmutableCollections {
      * @return an empty immutable list set
      */
     public static <E> ImmutableListSet<E> listSet() {
-        return ImmutableTreeSet.empty();
+        return ImmutableListSetImpl.empty();
     }
 
     /**
@@ -124,26 +105,7 @@ public final class ImmutableCollections {
      * @return the immutable list set
      */
     public static <E> ImmutableListSet<E> listSet(Iterable<? extends E> iterable) {
-        return ImmutableTreeSet.from(iterable);
-    }
-
-    /**
-     * Creates an empty immutable bag.
-     *
-     * @return an empty immutable bag
-     */
-    static <E> ImmutableBag<E> bag() {
-        return ImmutableMapBag.empty();
-    }
-
-    /**
-     * Creates an immutable bag from an iterable.
-     *
-     * @param iterable creates from
-     * @return the immutable bag
-     */
-    static <E> ImmutableBag<E> bag(Iterable<? extends E> iterable) {
-        return ImmutableMapBag.from(iterable);
+        return ImmutableListSetImpl.from(iterable);
     }
 
     /**
@@ -152,7 +114,7 @@ public final class ImmutableCollections {
      * @return an empty immutable map
      */
     public static <K, V> ImmutableMap<K, V> map() {
-        return ImmutableTreeMap.empty();
+        return ImmutableMapImpl.empty();
     }
 
     /**
@@ -162,6 +124,6 @@ public final class ImmutableCollections {
      * @return the immutable map
      */
     public static <K, V> ImmutableMap<K, V> map(Map<? extends K, ? extends V> map) {
-        return ImmutableTreeMap.from(map);
+        return ImmutableMapImpl.from(map);
     }
 }
