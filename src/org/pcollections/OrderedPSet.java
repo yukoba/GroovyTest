@@ -74,7 +74,6 @@ public final class OrderedPSet<E> extends AbstractSet<E> implements POrderedSet<
         return new OrderedPSet<E>(contents.plus(element), order.plus(element));
     }
 
-    @Override
     public OrderedPSet<E> plusAll(Collection<? extends E> list) {
         return plusAll((Iterable<? extends E>) list);
     }
@@ -93,7 +92,6 @@ public final class OrderedPSet<E> extends AbstractSet<E> implements POrderedSet<
         return new OrderedPSet<E>(contents.minus(element), order.minus(element));
     }
 
-    @Override
     public OrderedPSet<E> minusAll(Collection<?> list) {
         return minusAll((Iterable<? extends E>) list);
     }

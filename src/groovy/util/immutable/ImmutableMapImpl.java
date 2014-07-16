@@ -27,6 +27,7 @@ import java.util.Set;
  * @author Yu Kobayashi
  * @since 2.4.0
  */
+@SuppressWarnings("deprecation")
 public class ImmutableMapImpl<K, V> implements ImmutableMap<K, V>, Serializable {
     private static final ImmutableMapImpl<Object, Object> EMPTY = new ImmutableMapImpl<Object, Object>(HashPMap.empty());
     private static final long serialVersionUID = -3266597752208198094L;
@@ -46,88 +47,86 @@ public class ImmutableMapImpl<K, V> implements ImmutableMap<K, V>, Serializable 
         return (ImmutableMapImpl<K, V>) empty().plus(map);
     }
 
-    @Override
     public int size() {
         return map.size();
     }
 
-    @Override
     public boolean isEmpty() {
         return map.isEmpty();
     }
 
-    @Override
     public boolean containsKey(Object key) {
         return map.containsKey(key);
     }
 
-    @Override
     public boolean containsValue(Object value) {
         return map.containsValue(value);
     }
 
-    @Override
     public V get(Object key) {
         return map.get(key);
     }
 
-    @Override
     public ImmutableMap<K, V> plus(K key, V value) {
         return new ImmutableMapImpl<K, V>(map.plus(key, value));
     }
 
-    @Override
     public ImmutableMap<K, V> plus(Map<? extends K, ? extends V> m) {
         return new ImmutableMapImpl<K, V>(map.plusAll(m));
     }
 
-    @Override
     public ImmutableMap<K, V> minus(Object key) {
         return new ImmutableMapImpl<K, V>(map.minus(key));
     }
 
-    @Override
     public ImmutableMap<K, V> minus(Iterable<?> keys) {
         return new ImmutableMapImpl<K, V>(map.minusAll(keys));
     }
 
-    @Override
     public V putAt(K k, V v) {
         return map.putAt(k, v);
     }
 
-    @Override
     public V put(K k, V v) {
         return map.put(k, v);
     }
 
-    @Override
     public V remove(Object k) {
         return map.remove(k);
     }
 
-    @Override
     public void putAll(Map<? extends K, ? extends V> m) {
         map.putAll(m);
     }
 
-    @Override
     public void clear() {
         map.clear();
     }
 
-    @Override
     public Set<K> keySet() {
         return map.keySet();
     }
 
-    @Override
     public Collection<V> values() {
         return map.values();
     }
 
-    @Override
     public Set<Entry<K, V>> entrySet() {
         return map.entrySet();
+    }
+
+    @Override
+    public int hashCode() {
+        return map.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return (obj instanceof ImmutableMapImpl) && map.equals(((ImmutableMapImpl) obj).map);
+    }
+
+    @Override
+    public String toString() {
+        return map.toString();
     }
 }

@@ -46,177 +46,142 @@ class ImmutableListImpl<E> implements ImmutableList<E>, Serializable {
         return (ImmutableListImpl<E>) empty().plus(iterable);
     }
 
-    @Override
     public E get(int index) {
         return list.get(index);
     }
 
-    @Override
     public E set(int index, E element) {
         return list.set(index, element);
     }
 
-    @Override
     public ImmutableList<E> plus(E element) {
         return new ImmutableListImpl<E>(list.plus(element));
     }
 
-    @Override
     public ImmutableList<E> plus(Iterable<? extends E> iterable) {
         return new ImmutableListImpl<E>(list.plusAll(iterable));
     }
 
-    @Override
     public ImmutableList<E> plusAt(int index, E element) {
         return new ImmutableListImpl<E>(list.plus(index, element));
     }
 
-    @Override
     public ImmutableList<E> plusAt(int index, Iterable<? extends E> iterable) {
         return new ImmutableListImpl<E>(list.plusAll(index, iterable));
     }
 
-    @Override
     public ImmutableList<E> replaceAt(int index, E element) {
         return new ImmutableListImpl<E>(list.with(index, element));
     }
 
-    @Override
     public ImmutableList<E> minus(Object element) {
         return new ImmutableListImpl<E>(list.minus(element));
     }
 
-    @Override
     public ImmutableList<E> minus(Iterable<?> iterable) {
         return new ImmutableListImpl<E>(list.minusAll(iterable));
     }
 
-    @Override
     public int size() {
         return list.size();
     }
 
-    @Override
     public boolean isEmpty() {
         return list.isEmpty();
     }
 
-    @Override
     public boolean contains(Object o) {
         return list.contains(o);
     }
 
-    @Override
     public Iterator<E> iterator() {
         return list.iterator();
     }
 
-    @Override
     public Object[] toArray() {
         return list.toArray();
     }
 
-    @Override
     public <T> T[] toArray(T[] a) {
         return list.toArray(a);
     }
 
-    @Override
     public boolean add(E o) {
         return list.add(o);
     }
 
-    @Override
     public boolean remove(Object o) {
         return list.remove(o);
     }
 
-    @Override
     public boolean containsAll(Collection<?> c) {
         return list.containsAll(c);
     }
 
-    @Override
     public boolean addAll(Collection<? extends E> c) {
         return list.addAll(c);
     }
 
-    @Override
     public boolean removeAll(Collection<?> c) {
         return list.removeAll(c);
     }
 
-    @Override
     public boolean retainAll(Collection<?> c) {
         return list.retainAll(c);
     }
 
-    @Override
     public void clear() {
         list.clear();
     }
 
-    @Override
     public ImmutableList<E> minusAt(int index) {
         return new ImmutableListImpl<E>(list.minus(index));
     }
 
-    @Override
     public ImmutableList<E> subList(int start, int end) {
         return new ImmutableListImpl<E>(list.subList(start, end));
     }
 
-    @Override
     public ImmutableList<E> subList(int start) {
         return new ImmutableListImpl<E>(list.subList(start));
     }
 
-    @Override
     public boolean addAll(int index, Collection<? extends E> c) {
         return list.addAll(index, c);
     }
 
-    @Override
     public void add(int index, E e) {
         list.add(index, e);
     }
 
-    @Override
     public E remove(int index) {
         return list.remove(index);
     }
 
-    @Override
     public int indexOf(Object o) {
         return list.indexOf(o);
     }
 
-    @Override
     public int lastIndexOf(Object o) {
         return list.lastIndexOf(o);
     }
 
-    @Override
     public ListIterator<E> listIterator() {
         return list.listIterator();
     }
 
-    @Override
     public ListIterator<E> listIterator(int index) {
         return list.listIterator(index);
     }
 
-    @Override
     public int hashCode() {
         return list.hashCode();
     }
 
-    @Override
     public boolean equals(Object obj) {
-        return list.equals(obj);
+        return (obj instanceof ImmutableListImpl) && list.equals(((ImmutableListImpl) obj).list);
     }
 
-    @Override
     public String toString() {
         return list.toString();
     }

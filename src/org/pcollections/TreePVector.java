@@ -8,9 +8,9 @@ import java.util.ListIterator;
 import java.util.Map.Entry;
 
 /**
- * An immutable and persistent list. Elements can be null.
+ * An immutable and persistent vector. Elements can be null.
  * <p/>
- * This implementation is backed by an ImmutableIntTreeMap and
+ * This implementation is backed by an IntTreePMap and
  * supports logarithmic-time querying, setting, insertion,
  * and removal.
  * <p/>
@@ -127,7 +127,6 @@ public final class TreePVector<E> extends AbstractList<E> implements PVector<E>,
         return new TreePVector<E>(map.withKeysChangedAbove(index, 1).plus(index, element));
     }
 
-    @Override
     public TreePVector<E> plusAll(int i, Collection<? extends E> list) {
         return plusAll(i, (Iterable<? extends E>) list);
     }
@@ -161,15 +160,14 @@ public final class TreePVector<E> extends AbstractList<E> implements PVector<E>,
     public TreePVector<E> minus(Object element) {
         for (Entry<Integer, E> entry : map.entrySet()) {
             if (objectEquals(entry.getValue(), element)) {
-                return minus(entry.getKey());
+                return minus(entry.getKey().intValue());
             }
         }
         return this;
     }
 
-    @Override
-    public PVector<E> minusAll(Collection<?> list) {
-        return null;
+    public TreePVector<E> minusAll(Collection<?> list) {
+        return minusAll((Iterable<?>) list);
     }
 
     public TreePVector<E> minusAll(Iterable<?> iterable) {

@@ -26,6 +26,7 @@ import java.util.Iterator;
  * @author Yu Kobayashi
  * @since 2.4.0
  */
+@SuppressWarnings("deprecation")
 class ImmutableListSetImpl<E> implements ImmutableListSet<E>, Serializable {
     private static final ImmutableListSetImpl<Object> EMPTY = new ImmutableListSetImpl<Object>(OrderedPSet.empty());
     private static final long serialVersionUID = -3773996693856253314L;
@@ -45,117 +46,94 @@ class ImmutableListSetImpl<E> implements ImmutableListSet<E>, Serializable {
         return (ImmutableListSetImpl<E>) empty().plus(iterable);
     }
 
-    @Override
     public ImmutableListSet<E> plus(E element) {
         return new ImmutableListSetImpl<E>(set.plus(element));
     }
 
-    @Override
     public ImmutableListSet<E> plus(Iterable<? extends E> iterable) {
         return new ImmutableListSetImpl<E>(set.plusAll(iterable));
     }
 
-    @Override
     public ImmutableListSet<E> minus(Object element) {
         return new ImmutableListSetImpl<E>(set.minus(element));
     }
 
-    @Override
     public ImmutableListSet<E> minus(Iterable<?> iterable) {
         return new ImmutableListSetImpl<E>(set.minusAll(iterable));
     }
 
-    @Override
     public int size() {
         return set.size();
     }
 
-    @Override
     public boolean isEmpty() {
         return set.isEmpty();
     }
 
-    @Override
     public boolean contains(Object o) {
         return set.contains(o);
     }
 
-    @Override
     public Iterator<E> iterator() {
         return set.iterator();
     }
 
-    @Override
     public Object[] toArray() {
         return set.toArray();
     }
 
-    @Override
     public <T> T[] toArray(T[] a) {
         return set.toArray(a);
     }
 
-    @Override
     public boolean add(E o) {
         return set.add(o);
     }
 
-    @Override
     public boolean remove(Object o) {
         return set.remove(o);
     }
 
-    @Override
     public boolean containsAll(Collection<?> c) {
         return set.containsAll(c);
     }
 
-    @Override
     public boolean addAll(Collection<? extends E> c) {
         return set.addAll(c);
     }
 
-    @Override
     public boolean removeAll(Collection<?> c) {
         return set.removeAll(c);
     }
 
-    @Override
     public boolean retainAll(Collection<?> c) {
         return set.retainAll(c);
     }
 
-    @Override
     public void clear() {
         set.clear();
     }
 
-    @Override
     public E get(int index) {
         return set.get(index);
     }
 
-    @Override
     public int indexOf(Object o) {
         return set.indexOf(o);
     }
 
-    @Override
     public int lastIndexOf(Object o) {
         return set.lastIndexOf(o);
     }
 
-    @Override
     public int hashCode() {
         return set.hashCode();
     }
 
-    @Override
     public boolean equals(Object obj) {
-        return set.equals(obj);
+        return (obj instanceof ImmutableListSetImpl) && set.equals(((ImmutableListSetImpl) obj).set);
     }
 
-    @Override
     public String toString() {
         return set.toString();
     }

@@ -120,7 +120,6 @@ public final class MapPBag<E> extends AbstractCollection<E> implements PBag<E>, 
         return new MapPBag<E>(map.plus(element, count(element) + 1), size + 1);
     }
 
-    @Override
     public MapPBag<E> plusAll(Collection<? extends E> list) {
         return plusAll((Iterable<? extends E>) list);
     }
@@ -144,7 +143,6 @@ public final class MapPBag<E> extends AbstractCollection<E> implements PBag<E>, 
         return new MapPBag<E>(map.plus((E) element, n - 1), size - 1);
     }
 
-    @Override
     public MapPBag<E> minusAll(Collection<?> list) {
         return minusAll((Iterable<?>) list);
     }

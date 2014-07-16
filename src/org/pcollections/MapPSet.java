@@ -93,7 +93,6 @@ public final class MapPSet<E> extends AbstractSet<E> implements PSet<E>, Seriali
         return contains(element) ? this : new MapPSet<E>(map.plus(element, In.IN));
     }
 
-    @Override
     public MapPSet<E> plusAll(Collection<? extends E> list) {
         return plusAll((Iterable<? extends E>) list);
     }
@@ -109,13 +108,12 @@ public final class MapPSet<E> extends AbstractSet<E> implements PSet<E>, Seriali
         return contains(element) ? new MapPSet<E>(map.minus(element)) : this;
     }
 
-    @Override
     public MapPSet<E> minusAll(Collection<?> list) {
         return minusAll((Iterable<?>) list);
     }
 
     public MapPSet<E> minusAll(Iterable<?> iterable) {
-        return from(map.minus(iterable));
+        return from(map.minusAll(iterable));
     }
 
     @Override

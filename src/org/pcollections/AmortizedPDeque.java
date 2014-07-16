@@ -1,7 +1,5 @@
 package org.pcollections;
 
-import org.codehaus.groovy.runtime.DefaultGroovyMethods;
-
 import java.io.Serializable;
 import java.util.*;
 
@@ -233,7 +231,7 @@ public final class AmortizedPDeque<E> extends AbstractQueue<E> implements PDeque
                 // If there's one element on front, dump back onto front,
                 // but now we've already removed the head.
                 return new AmortizedPDeque<E>(
-                        ConsPStack.from(back.subList(1)),
+                        ConsPStack.<E>empty().plusAll(back.subList(1)), // reverse order
                         ConsPStack.singleton(back.get(0)));
 
             default:
@@ -259,7 +257,7 @@ public final class AmortizedPDeque<E> extends AbstractQueue<E> implements PDeque
             case 1:
                 return new AmortizedPDeque<E>(
                         ConsPStack.singleton(front.get(0)),
-                        ConsPStack.from(front.subList(1)));
+                        ConsPStack.<E>empty().plusAll(front.subList(1))); // reverse order
 
             default:
                 return new AmortizedPDeque<E>(front, back.subList(1));
@@ -319,7 +317,7 @@ public final class AmortizedPDeque<E> extends AbstractQueue<E> implements PDeque
 
     public AmortizedPDeque<E> minusAll(Iterable<?> iterable) {
         ArrayList<E> list = new ArrayList<E>(this);
-        list.removeAll(DefaultGroovyMethods.asCollection(iterable));
+        list.removeAll(Utils.asCollection(iterable));
         return from(list);
     }
 
